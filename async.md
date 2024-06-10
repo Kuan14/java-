@@ -1,4 +1,4 @@
-**JavaScript** :是一個「非同步」的語言。
+## JavaScript  :是一個「非同步」的語言。
 ```
 - 同步(sync)
 必須先完成 A 才能做 B、C、D ...的運作方式我們就會把它稱作「同步」
@@ -65,12 +65,44 @@ function funcC(){
   });
 }
 ```
+### 同步 
 最後透過呼叫
 ```js
 funcA().then(funcB).then(funcC);
 ```
 就可以做到等 `funcA()` 被 「resolve」之後再執行 `funcB()`，然後 resolve 再執行 `funcC()` 的順序了。
+### 非同步 
+```js
+Promise.all([funcA(), funcB(), funcC()])
+       .then(function(){ console.log('上菜'); });
+```
+async 和 await 是 JavaScript 中處理非同步操作的語法糖，讓非同步代碼看起來像同步代碼，從而更容易閱讀和維護。以下是詳細的解釋和使用範例。
 
+##async 函數##
+async 關鍵字用於定義一個非同步函數。
+非同步函數會隱式地返回一個 `Promise`，即使你在函數中返回的是一個普通值，該值也會被 `Promise` 包裝。
+
+##await 關鍵字##
+await 只能在 async 函數中使用。
+它會暫停 async 函數的執行，直到 await 後面的 Promise 完成（解決或拒絕）。
+
+```js
+// 定義一個 async 函數
+async function fetchData() {
+  // 使用 await 等待 Promise 完成
+  let response = await fetch('https://api.example.com/data');
+  let data = await response.json();
+  return data;
+}
+
+// 調用 async 函數
+fetchData().then(data => {
+  console.log(data);
+}).catch(error => {
+  console.error(error);
+});
+```
+在這個範例中，`fetchData` 是一個非同步函數，使用` await` 關鍵字來等待 `fetch` 和 `response.json()` 的完成。
 
 
 
