@@ -78,11 +78,11 @@ Promise.all([funcA(), funcB(), funcC()])
 ```
 async 和 await 是 JavaScript 中處理非同步操作的語法糖，讓非同步代碼看起來像同步代碼，從而更容易閱讀和維護。以下是詳細的解釋和使用範例。
 
-##async 函數##
+## async 函數
 async 關鍵字用於定義一個非同步函數。
 非同步函數會隱式地返回一個 `Promise`，即使你在函數中返回的是一個普通值，該值也會被 `Promise` 包裝。
 
-##await 關鍵字##
+## await 關鍵字
 await 只能在 async 函數中使用。
 它會暫停 async 函數的執行，直到 await 後面的 Promise 完成（解決或拒絕）。
 
