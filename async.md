@@ -17,15 +17,7 @@ const myFirstPromise = new Promise((resolve, reject) => {
   reject("failure reason");   // 拒絕
 });
 ```
-要提供一個函式 `promise` 功能，讓它回傳一個 `promise` 物件即可：
-```js
-function myAsyncFunction(url) {
-  return new Promise((resolve, reject) => {
-    // resolve() or reject()
-  });
-};
-```
-當 `Promise` 被完成的時候，我們就可以呼叫 `resolve()`，然後將取得的資料傳遞出去。 或是說想要拒絕 `Promise` ，當個完全沒有信用的人， 那麼就呼叫 reject() 來拒絕。
+
 ```
 一般來說， `Promise` 物件會有這幾種狀態：
 
