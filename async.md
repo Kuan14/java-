@@ -1,5 +1,5 @@
 ## JavaScript  :是一個「非同步」的語言。
-```
+
 - 同步(sync)
 必須先完成 A 才能做 B、C、D ...的運作方式我們就會把它稱作「同步」
 EX.領完食材原料之後，一樣會有青菜、番茄需要處理。
@@ -9,7 +9,7 @@ EX.領完食材原料之後，一樣會有青菜、番茄需要處理。
 理事件的流程不會被「卡住」，就是非同步 (Asynchronous) 的概念。我不用等待 A 做完才做 B、C，而是這三個事情可以同時發送出去。 
 EX.不需要等到青菜切完才能處理番茄。
 而是在收到食材的同時，負責青菜的朋友就去處理青菜，負責番茄的朋友就去處理番茄。
-```
+  
 `Promise`按字面上的翻譯就是「承諾、約定」之意，回傳的結果要嘛是「完成」，要嘛是「拒絕」。
 ```js
 const myFirstPromise = new Promise((resolve, reject) => {
@@ -18,13 +18,13 @@ const myFirstPromise = new Promise((resolve, reject) => {
 });
 ```
 
-```
+
 一般來說， `Promise` 物件會有這幾種狀態：
 
 - pending: 初始狀態，不是 fulfilled 或 rejected。
 - fulfilled: 表示操作成功地完成。
 - rejected: 表示操作失敗。
-```
+
 
 如果我們需要依序串連執行多個 `promise` 功能的話，可以透過 `.then()` 來做到。
 
@@ -113,6 +113,15 @@ Start
 End
 default: 2002.000ms  // (這個數字大約是2秒，具體數值可能略有差異)
 ```
+## 什麼情況會reject
+1.其中一個 Promise 被拒絕：
 
+- 如果其中一個 Promise 被拒絕，Promise.all() 返回的 Promise 也會立即被拒絕，並且拒絕的原因是第一個被拒絕的 Promise 的拒絕原因。
+2.其中一個 Promise 發生錯誤：
+
+- 如果其中一個 Promise 發生錯誤（比如抛出了一個錯誤），這也會導致 Promise.all() 返回的 Promise 被拒絕。
+3.輸入的 Promise 陣列為空：
+
+- 如果輸入的 Promise 陣列為空，Promise.all([]) 將立即返回一個被拒絕的 Promise。
 
 
