@@ -98,7 +98,6 @@ async function example() {
 example(); // 調用example函數，開始執行上述步驟
 
 ```
-在這個範例中，`fetchData` 是一個非同步函數，使用` await` 關鍵字來等待 `fetch` 和 `response.json()` 的完成。
 
 ## 當調用example函數時，以下步驟會依次發生：
 
