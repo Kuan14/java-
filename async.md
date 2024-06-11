@@ -79,22 +79,41 @@ await 只能在 async 函數中使用。
 它會暫停 async 函數的執行，直到 await 後面的 Promise 完成（解決或拒絕）。
 
 ```js
-// 定義一個 async 函數
-async function fetchData() {
-  // 使用 await 等待 Promise 完成
-  let response = await fetch('https://api.example.com/data');
-  let data = await response.json();
-  return data;
+function sleep(ms) {
+  // 創建並返回一個Promise，該Promise會在指定毫秒數後解決
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms); // 設置定時器，在ms毫秒後調用resolve
+  });
 }
 
-// 調用 async 函數
-fetchData().then(data => {
-  console.log(data);
-}).catch(error => {
-  console.error(error);
-});
+// 使用範例
+async function example() {
+  console.time();       // 開始計時
+  console.log('Start'); // 在控制台輸出 'Start'
+  await sleep(2000);    // 暫停執行2秒
+  console.log('End');   // 2秒後，在控制台輸出 'End'
+  console.timeEnd();    // 結束計時並輸出經過的時間
+}
+
+example(); // 調用example函數，開始執行上述步驟
+
 ```
 在這個範例中，`fetchData` 是一個非同步函數，使用` await` 關鍵字來等待 `fetch` 和 `response.json()` 的完成。
+```
+##當調用example函數時，以下步驟會依次發生：##
+
+1.開始計時。
+2.輸出'Start'。
+3.暫停執行2秒（因為sleep(2000)返回的Promise在2秒後解決）。
+4.2秒後，輸出'End'。
+5.結束計時並輸出經過的時間。
+```
+##運行結果##
+```js
+Start
+End
+default: 2002.000ms  // (這個數字大約是2秒，具體數值可能略有差異)
+```
 
 
 
